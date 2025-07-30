@@ -13,3 +13,16 @@
 html {
   box-sizing: border-box;
 }
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+  font: 16px/2 "Inter", sans-serif;
+  justify-content: center;
+  background-color: #0b0b0b;
+  color: white;
+  padding: 0 1.5em;
+}

@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  .logo {
+    width: 50%;
+  }
+  .menu {
+    width: 50%;
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 5%;
+    cursor: pointer;
+  }
+}
