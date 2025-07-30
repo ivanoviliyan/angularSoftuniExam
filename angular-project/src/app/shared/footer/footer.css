@@ -1,4 +1,6 @@
 footer {
+  background-color: wheat;
+  padding: 1em;
   display: flex;
   align-items: center;
   flex-direction: column;

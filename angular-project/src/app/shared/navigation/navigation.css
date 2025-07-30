@@ -1,9 +1,11 @@
 nav {
+  background-color: wheat;
+  padding: 1em;
   display: flex;
   align-items: center;
   margin: 0;
   .logo {
-    width: 50%;
+    width: 50dvw;
   }
   .menu {
     width: 50%;
