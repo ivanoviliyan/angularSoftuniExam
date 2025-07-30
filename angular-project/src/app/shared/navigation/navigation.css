@@ -7,6 +7,9 @@ nav {
   .logo {
     width: 50dvw;
   }
+  .logo img {
+    width: 150px;
+  }
   .menu {
     width: 50%;
     display: flex;
