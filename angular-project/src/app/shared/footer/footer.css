@@ -1,0 +1,42 @@
+footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  section {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      ul {
+        list-style: none;
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+      }
+
+      li:hover {
+        cursor: pointer;
+        border-bottom: 2px dotted green;
+      }
+    }
+  }
+}
+
+/* ul {
+  list-style: none;
+  display: flex;
+  gap: 2%;
+  justify-content: center;
+  align-items: center;
+} */

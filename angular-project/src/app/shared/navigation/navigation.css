@@ -11,6 +11,9 @@ nav {
     list-style: none;
     justify-content: flex-end;
     gap: 5%;
-    cursor: pointer;
+    li:hover {
+      cursor: pointer;
+      border-bottom: 1px dotted green;
+    }
   }
 }
