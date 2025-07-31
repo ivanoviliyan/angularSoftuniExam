@@ -7,6 +7,7 @@ import { Tvshows } from './pages/tvshows/tvshows';
 import { Movies } from './pages/movies/movies';
 import { Mylist } from './pages/mylist/mylist';
 import { Singin } from './pages/singin/singin';
+import { Register } from './pages/register/register';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { Singin } from './pages/singin/singin';
     Movies,
     Mylist,
     Singin,
+    Register,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
