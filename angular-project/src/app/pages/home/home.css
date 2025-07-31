@@ -1,6 +1,8 @@
 .home {
-  background-color: lightblue;
-  padding: 6.8em 3em;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/42099ce7-21cc-4245-99a1-94dd88ccb7a6/dfe44jf-faf5a20b-0546-474a-ae83-76a19466b262.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQyMDk5Y2U3LTIxY2MtNDI0NS05OWExLTk0ZGQ4OGNjYjdhNlwvZGZlNDRqZi1mYWY1YTIwYi0wNTQ2LTQ3NGEtYWU4My03NmExOTQ2NmIyNjIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.gzMs8VRZrNH9xvQ_1s5SzVROjE2bf1RdKUNFNI4tpng");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 7.7em 3em;
   border-radius: 1.3em;
   h1 {
     font-size: 2.6em;
