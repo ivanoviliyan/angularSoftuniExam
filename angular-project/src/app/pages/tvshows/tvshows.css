@@ -1,9 +1,27 @@
-h1 {
-  color: #2c3e50;
+.tv-shows {
+  padding: 2em 0;
+  display: flex;
+  gap: 30px;
 }
-ul {
-  list-style-type: none;
+.description {
+  max-width: 65ch;
 }
-.show {
-  margin-bottom: 10px;
+.movie-banner img {
+  border-radius: 1em;
+}
+.movie-banner img:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.add-to-my-list {
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+  background-color: lightgreen;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.015);
+    transition: transform 0.2s ease-in-out;
+  }
 }

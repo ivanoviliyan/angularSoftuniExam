@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap");
+
 /* You can add global styles to this file, and also import other style files */
 * {
   padding: 0;
@@ -21,7 +23,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   background: #ffffff;
-  font: 16px/2 "Inter", sans-serif;
+  font: 16px/2 "Inclusive Sans", sans-serif;
   /* justify-content: center; */
   background-color: #f8e5e5;
   color: rgb(27, 21, 21);
