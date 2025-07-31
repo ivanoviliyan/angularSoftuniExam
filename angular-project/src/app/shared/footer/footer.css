@@ -1,55 +1,35 @@
 .site-footer {
   text-align: center;
-  font-size: 14px;
-  margin-top: 60px;
+  font-size: 1.15em;
+  font-weight: bold;
 }
 
 .container {
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .footer-content {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 1.1em;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-links {
   display: flex;
-  justify-content: center;
-  gap: 25px;
+  gap: 1.5em;
+  padding: 0.5em;
+  border-radius: 2em;
 
   i {
-    transition: color 0.5s ease;
-    font-size: 2em;
-
+    padding-left: 1.1em;
+    font-size: 1.8em;
     &:hover {
       transform: scale(1.03);
       transition: transform 0.3s ease-in-out;
       cursor: pointer;
     }
   }
-
-  .fa-facebook {
-    color: #1877f2;
-  }
-  .fa-instagram {
-    color: #dd2a7b;
-  }
-  .fa-youtube {
-    color: #ff0000;
-  }
-  .fa-x-twitter {
-    color: black;
-  }
-}
-
-.footer-links a {
-  margin: 0 12px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #1abc9c;
 }

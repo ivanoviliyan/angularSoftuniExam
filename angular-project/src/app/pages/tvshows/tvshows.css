@@ -1,23 +1,73 @@
 .tv-shows {
   padding: 2em 0;
   display: flex;
-  gap: 30px;
+  gap: 35px;
 }
 .description {
   max-width: 65ch;
+  font-weight: bold;
 }
-.movie-banner img {
-  border-radius: 1em;
+
+h1 {
+  font-size: 2.5em;
 }
-.movie-banner img:hover {
-  transform: scale(1.03);
+
+.movie-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5em;
+}
+
+.image-wrapper img {
+  width: 100%;
+  display: block;
   transition: transform 0.3s ease-in-out;
+  border-radius: 0.5em;
+}
+
+.image-wrapper:hover img {
+  border-radius: 0.5em;
+  transform: scale(1.03);
   cursor: pointer;
 }
-.add-to-my-list {
-  padding: 1em 1.5em;
+
+.image-wrapper::after {
+  content: "Watch Now";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
   border-radius: 0.5em;
-  background-color: lightgreen;
+}
+
+.image-wrapper:hover::after {
+  opacity: 1;
+}
+
+.add-to-my-list {
+  margin: 1em auto;
+  padding: 1em 1.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 0.5em;
+  background-color: #0f9b0f;
   border: none;
   cursor: pointer;
   &:hover {

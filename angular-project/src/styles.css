@@ -4,6 +4,7 @@
 * {
   padding: 0;
   margin: 0;
+  color: aliceblue;
 }
 
 *,
@@ -22,11 +23,8 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background: #ffffff;
+  background: #272525;
   font: 16px/2 "Inclusive Sans", sans-serif;
-  /* justify-content: center; */
-  background-color: #f8e5e5;
-  color: rgb(27, 21, 21);
   padding: 0 1.5em;
 }
 
@@ -53,10 +51,22 @@ main {
 }
 
 .container {
-  background-color: #fefefe;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   padding: 30px;
   margin: 2em auto;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: #333;
 }
