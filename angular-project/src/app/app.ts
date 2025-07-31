@@ -6,10 +6,20 @@ import { Home } from './pages/home/home';
 import { Tvshows } from './pages/tvshows/tvshows';
 import { Movies } from './pages/movies/movies';
 import { Mylist } from './pages/mylist/mylist';
+import { Singin } from './pages/singin/singin';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navigation, Footer, Home, Tvshows, Movies, Mylist],
+  imports: [
+    RouterOutlet,
+    Navigation,
+    Footer,
+    Home,
+    Tvshows,
+    Movies,
+    Mylist,
+    Singin,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
