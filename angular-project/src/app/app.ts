@@ -8,6 +8,7 @@ import { Movies } from './pages/movies/movies';
 import { Mylist } from './pages/mylist/mylist';
 import { Singin } from './pages/singin/singin';
 import { Register } from './pages/register/register';
+import { About } from './pages/about/about';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { Register } from './pages/register/register';
     Mylist,
     Singin,
     Register,
+    About
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

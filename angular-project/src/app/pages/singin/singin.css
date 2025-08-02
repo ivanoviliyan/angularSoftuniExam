@@ -2,67 +2,84 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-dark);
+  margin: 1.15em 0;
+  border-radius: 10px;
+  padding: 1.5em 0;
 }
 
 h1 {
   margin-bottom: 30px;
-  color: #2c3e50;
+  color: var(--color-accent);
+  font-size: 3em;
+  font-weight: 700;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 40%;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 1.3em;
 }
 
+/* Labels */
 label {
   text-align: left;
   font-weight: 600;
   margin-bottom: 6px;
+  color: var(--color-accent);
 }
 
 input[type="email"],
 input[type="password"] {
-  padding: 10px 12px;
-  border: 1.5px solid #ccc;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-primary);
   border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
+  font-size: 0.8em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: var(--color-accent);
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-color: #3498db;
+  border-color: var(--color-primary); /* Accent orange */
+  box-shadow: 0 0 0 3px rgba(255, 107, 44, 0.2);
   outline: none;
+  color: var(--color-accent);
 }
 
+/* Button */
 button {
+  margin-top: 1em;
   padding: 12px 0;
-  background-color: #3498db;
-  color: white;
-  font-size: 18px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  font-size: 1.1em;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: var(--color-hover);
+  transform: translateY(-1px);
 }
 
 .register-text {
   margin-top: 25px;
-  font-size: 14px;
-  color: #666;
+  font-size: 1em;
+  color: var(--color-light);
 }
 
 .register-link {
-  color: #3498db;
+  color: var(--color-accent);
   text-decoration: none;
   font-weight: 600;
+  margin-left: 6px;
 }
 
 .register-link:hover {

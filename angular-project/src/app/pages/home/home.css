@@ -1,26 +1,27 @@
 .home {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/42099ce7-21cc-4245-99a1-94dd88ccb7a6/dfe44jf-faf5a20b-0546-474a-ae83-76a19466b262.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQyMDk5Y2U3LTIxY2MtNDI0NS05OWExLTk0ZGQ4OGNjYjdhNlwvZGZlNDRqZi1mYWY1YTIwYi0wNTQ2LTQ3NGEtYWU4My03NmExOTQ2NmIyNjIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.gzMs8VRZrNH9xvQ_1s5SzVROjE2bf1RdKUNFNI4tpng");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 7.7em 3em;
+
+  padding: 8.2em 3em;
   border-radius: 1.3em;
   display: flex;
   justify-content: space-between;
   h1 {
-    font-size: 2.6em;
-    max-width: 20ch;
+    font-size: 2.8em;
     line-height: 1.3em;
   }
   .new-releases {
     padding: 1.3em 0;
+    font-size: 1.1em;
   }
   .streaming {
-    color: #e50914;
-    font-size: 0.8em;
+    color: var(--color-primary);
+    font-size: 1.2em;
     line-height: 0.7em;
-    font-weight: 500;
+    font-weight: bold;
   }
   h2 {
     text-transform: uppercase;
@@ -34,30 +35,32 @@
     padding-bottom: 0.7em;
 
     li {
-      background-color: rgba(255, 255, 255, 0.25);
+      background-color: var(--color-gray);
       border-radius: 1em;
       padding: 0 0.7em;
+      font-size: 1.2em;
     }
   }
   .stars-views {
-    font-size: 0.9em;
+    font-size: 1em;
     padding-bottom: 2em;
   }
 }
 
+
 .aside {
   padding: 0 1em 1em 1em;
   margin-right: 5em;
-  background-color: rgba(0, 0, 0, 0.45);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  color: white;
+  color: var(--color-light);
   border-radius: 20px;
   max-height: fit-content;
 
   h2 {
     text-align: center;
     padding-bottom: 1em;
+    font-size: 1.4em;
   }
 
   .coming-soon-list {
@@ -73,6 +76,7 @@
       justify-content: center;
       align-items: center;
       gap: 20px;
+      font-size: 1em;
 
       img {
         border-radius: 10px;
@@ -90,6 +94,7 @@
       .desc {
         display: flex;
         flex-direction: column;
+        font-size: 0.9em;
       }
     }
   }
