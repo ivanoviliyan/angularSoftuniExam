@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="header">
+    <img src="assets/logo.png" alt="logo" />
+    <h1>Manage Movies</h1>
+  </div>
+
+  <form>
+    <h2>Add movie</h2>
+    <div class="data">
+      <input type="text" placeholder="Title" required />
+      <input type="text" placeholder="Director" required />
+      <input type="number" placeholder="Release Year" required />
+      <input type="text" placeholder="Genres (comma separated)" />
+      <input type="number" placeholder="Rating (0-10)" min="0" max="10" />
+      <input type="number" placeholder="Duration (min)" min="1" />
+    </div>
+
+    <div class="actions">
+      <button type="submit">Add Movie</button>
+      <button type="reset">Clear</button>
+    </div>
+  </form>
+
+  <ul class="movie-list">
+    <h2>Already added movies:</h2>
+    <div class="search-box">
+      <input type="text" placeholder="Search movies..." />
+      <button>🔍</button>
+    </div>
+    <li>
+      <div class="img">
+        <img src="https://placehold.co/170x220" alt="Movie Poster" />
+      </div>
+      <div class="info">
+        <p><span>Title: </span>Inception</p>
+        <p><span>Release year: </span>2010</p>
+        <p><span>Director: </span>Christopher Nolan</p>
+        <p><span>Genres: </span>Action, Sci-Fi</p>
+        <p><span>Rating: </span>8.8⭐</p>
+        <p><span>Duration: </span>148 min</p>
+        <div class="controls">
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="img">
+        <img src="https://placehold.co/170x220" alt="Movie Poster" />
+      </div>
+      <div class="info">
+        <p><span>Title: </span>The Matrix</p>
+        <p><span>Release year: </span>1999</p>
+        <p><span>Director: </span>Lana Wachowski</p>
+        <p><span>Genres: </span>Action, Sci-Fi</p>
+        <p><span>Rating: </span>8.7⭐</p>
+        <p><span>Duration: </span>136 min</p>
+        <div class="controls">
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

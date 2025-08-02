@@ -7,7 +7,7 @@ nav {
   margin: 0;
   color: black;
   .logo {
-    width: 100%;
+    width: 30%;
     display: flex;
     align-items: center;
     gap: 0.6em;
@@ -19,15 +19,22 @@ nav {
     color: #e50914;
   }
   .menu {
-    width: 50%;
+    width: 70%;
     display: flex;
     list-style: none;
     justify-content: flex-end;
-    gap: 5%;
+    gap: 3%;
+    padding-right: 2%;
     li:hover {
       transform: scale(1.03);
       transition: transform 0.3s ease-in-out;
       cursor: pointer;
+    }
+
+    .admin {
+      margin-right: 10%;
+      color: var(--color-accent);
+      border-bottom: 1px solid var(--color-accent);
     }
   }
 }

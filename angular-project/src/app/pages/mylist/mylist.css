@@ -23,7 +23,7 @@
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--color-light);
-  border-left: 4px solid var(--color-primary);
+  /* border-left: 4px solid var(--color-primary); */
   padding-left: 0.75rem;
 }
 
@@ -48,10 +48,25 @@
   transition: background 0.3s ease;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 75px;
+  }
+}
+
 .info {
   display: flex;
   align-items: center;
   gap: 25px;
+
+  img {
+    border-radius: 10px;
+  }
 }
 
 .mylist-section li:hover {
@@ -69,6 +84,8 @@
     border: none;
     box-shadow: none;
     border-radius: 10px;
+    width: 130px;
+    font-size: 0.90em;
     &:hover {
       transform: scale(1.015);
       transition: transform 0.2s ease-in-out;

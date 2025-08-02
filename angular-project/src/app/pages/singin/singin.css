@@ -6,13 +6,20 @@
   margin: 1.15em 0;
   border-radius: 10px;
   padding: 1.5em 0;
+  
+
+  img {
+    width: 75px;
+    
+  }
 }
 
 h1 {
   margin-bottom: 30px;
-  color: var(--color-accent);
+  color: var(--color-primary);
   font-size: 3em;
   font-weight: 700;
+  border-bottom: 2px solid var(--color-gray);
 }
 
 form {
