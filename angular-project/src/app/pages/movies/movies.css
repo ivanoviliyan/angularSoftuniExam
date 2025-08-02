@@ -1,19 +1,133 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+  gap: 30px;
+}
+
+.movies {
+  display: flex;
+  gap: 35px;
+}
+
+.description {
+  max-width: 65ch;
+  font-weight: bold;
+}
+
 h1 {
-  color: #2c3e50;
-  margin-bottom: 10px;
+  font-size: 2.5em;
 }
 
-p {
-  margin-bottom: 20px;
-  font-size: 16px;
+.movie-title {
+  font-weight: bold;
 }
 
-ul {
-  list-style-type: square;
-  padding-left: 20px;
+.movie-rate,
+.movie-desc {
+  font-size: 0.9rem;
+  color: #ccc;
 }
 
-li {
-  margin-bottom: 12px;
-  line-height: 1.5;
+.add-to-my-list {
+  margin: 1em auto;
+  padding: 1em 1.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 0.5em;
+  background-color: #ff5722;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.add-to-my-list:hover {
+  transform: scale(1.015);
+}
+
+/* Повтарящи се стилове (можеш да ги изнесеш общо с TV Shows, ако искаш) */
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5em;
+}
+
+.image-wrapper img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 0.5em;
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.image-wrapper::after {
+  content: "Watch Now";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  border-radius: 0.5em;
+}
+
+.image-wrapper:hover::after {
+  opacity: 1;
+}
+
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.search-box input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #ccc;
+}
+
+.search-box button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-box button:hover {
+  transform: scale(1.015);
+  transition: transform 0.2s ease-in-out;
 }
