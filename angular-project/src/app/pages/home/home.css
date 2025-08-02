@@ -1,9 +1,13 @@
 .home {
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/42099ce7-21cc-4245-99a1-94dd88ccb7a6/dfe44jf-faf5a20b-0546-474a-ae83-76a19466b262.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQyMDk5Y2U3LTIxY2MtNDI0NS05OWExLTk0ZGQ4OGNjYjdhNlwvZGZlNDRqZi1mYWY1YTIwYi0wNTQ2LTQ3NGEtYWU4My03NmExOTQ2NmIyNjIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.gzMs8VRZrNH9xvQ_1s5SzVROjE2bf1RdKUNFNI4tpng");
-  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/42099ce7-21cc-4245-99a1-94dd88ccb7a6/dfe44jf-faf5a20b-0546-474a-ae83-76a19466b262.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQyMDk5Y2U3LTIxY2MtNDI0NS05OWExLTk0ZGQ4OGNjYjdhNlwvZGZlNDRqZi1mYWY1YTIwYi0wNTQ2LTQ3NGEtYWU4My03NmExOTQ2NmIyNjIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.gzMs8VRZrNH9xvQ_1s5SzVROjE2bf1RdKUNFNI4tpng");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 7.7em 3em;
   border-radius: 1.3em;
+  display: flex;
+  justify-content: space-between;
   h1 {
     font-size: 2.6em;
     max-width: 20ch;
@@ -38,5 +42,55 @@
   .stars-views {
     font-size: 0.9em;
     padding-bottom: 2em;
+  }
+}
+
+.aside {
+  padding: 0 1em 1em 1em;
+  margin-right: 5em;
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  color: white;
+  border-radius: 20px;
+  max-height: fit-content;
+
+  h2 {
+    text-align: center;
+    padding-bottom: 1em;
+  }
+
+  .coming-soon-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 40px;
+
+    li {
+      padding-bottom: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      img {
+        border-radius: 10px;
+        width: 130px;
+        height: 185px;
+
+        &:hover {
+          filter: saturate(1.15);
+          transform: scale(1.03);
+          transition: transform 0.3s ease-in-out;
+          cursor: pointer;
+        }
+      }
+
+      .desc {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 }
