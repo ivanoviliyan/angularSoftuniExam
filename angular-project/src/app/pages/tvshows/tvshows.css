@@ -1,5 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+}
+
 .tv-shows {
-  padding: 2em 0;
   display: flex;
   gap: 35px;
 }
@@ -15,7 +22,7 @@ h1 {
 .movie-banner {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.4em;
 }
 
 .image-wrapper {
@@ -74,4 +81,44 @@ h1 {
     transform: scale(1.015);
     transition: transform 0.2s ease-in-out;
   }
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem auto;
+  max-width: 400px;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.search-box input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #ccc;
+}
+
+.search-box button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-box button:hover {
+  transform: scale(1.015);
+  transition: transform 0.2s ease-in-out;
 }
