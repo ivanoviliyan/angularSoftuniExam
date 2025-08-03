@@ -8,6 +8,8 @@
   padding: 8.2em 3em;
   border-radius: 1.3em;
   display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
   justify-content: space-between;
   h1 {
     font-size: 2.8em;
@@ -50,7 +52,6 @@
 
 .aside {
   padding: 0 1em 1em 1em;
-  margin-right: 5em;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   color: var(--color-light);
@@ -65,23 +66,25 @@
 
   .coming-soon-list {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 40px;
+    gap: 2em;
 
     li {
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.5em;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      font-size: 1em;
+      gap: 1.5em;
+      font-size: 1.1em;
 
       img {
         border-radius: 10px;
-        width: 130px;
-        height: 185px;
+          width: 130px;
+          height: 185px;
 
         &:hover {
           filter: saturate(1.15);
