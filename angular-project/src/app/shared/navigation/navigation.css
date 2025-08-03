@@ -31,6 +31,12 @@ nav {
       cursor: pointer;
     }
 
+    li {
+      a {
+        text-decoration: none;
+      }
+    }
+
     .admin {
       margin-right: 10%;
       color: var(--color-accent);
