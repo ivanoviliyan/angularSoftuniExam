@@ -1,25 +1,59 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient, private router: Router) {}
+
+  private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn());
+  loggedIn$ = this.loggedIn.asObservable();
+
   saveUser(user: any) {
     localStorage.setItem('username', user.username);
     localStorage.setItem('accessToken', user.accessToken);
     localStorage.setItem('userId', user._id);
+    this.loggedIn.next(true);
   }
 
   getUser(prop: string) {
-    const user = localStorage.getItem(prop);
-    return user ? JSON.parse(user) : null;
+    const item = localStorage.getItem(prop);
+    return item ? item : null;
   }
 
   clearUser() {
-    localStorage.removeItem('user');
+    localStorage.clear();
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('accessToken');
+  }
+
+  logout(): void {
+    const accessToken = this.getUser('accessToken');
+    this.clearUser();
+    this.loggedIn.next(false);
+    this.router.navigate(['/']);
+
+    const headers = new HttpHeaders({
+      'X-Authorization': accessToken || '',
+    });
+
+    this.http
+      .get('http://localhost:3030/users/logout', {
+        headers,
+        observe: 'response',
+      })
+      .subscribe({
+        next: (response) => {
+          console.log(response.status)
+        },
+        error: (error) => {
+          console.error('Logout failed:', error);
+        },
+      });
   }
 }

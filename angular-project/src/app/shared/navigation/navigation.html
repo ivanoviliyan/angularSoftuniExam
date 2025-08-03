@@ -1,14 +1,26 @@
+s
 <nav class="section container">
   <div class="logo">
     <img src="assets/logo.png" alt="logo" />
-    <p>CINEHUB</p>
+    <div class="great">
+      <span *ngIf="isLoggedIn">{{ getUserName() }}'s</span><span> CINEHUB</span>
+    </div>
   </div>
   <ul class="menu">
-    <li class="admin"><a routerLink="/manage-movies">Manage movies</a></li>
+    <li class="admin">
+      <a routerLink="/manage-movies" *ngIf="isLoggedIn">Manage movies</a>
+    </li>
     <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/movies">Movies</a></li>
     <li><a routerLink="/my-list">My List</a></li>
     <li><a routerLink="/about">About us</a></li>
-    <li><a routerLink="/sign-in">Sign in</a></li>
+
+    <li *ngIf="!isLoggedIn">
+      <a routerLink="/sign-in">Sign in</a>
+    </li>
+
+    <li class="admin" *ngIf="isLoggedIn">
+      <a (click)="logout()">Logout</a>
+    </li>
   </ul>
 </nav>
