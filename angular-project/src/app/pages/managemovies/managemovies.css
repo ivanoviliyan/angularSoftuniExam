@@ -93,26 +93,37 @@ button:hover {
   padding: 0;
 }
 
+.list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 20px;
+  width: 100%;
+  padding: 0;
+}
+
 .movie-list li {
-  width: 65%;
   background: var(--color-gray);
   padding: 1.5em;
-  margin-bottom: 10px;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 25px;
-
-  span {
-    font-weight: bold;
-    color: var(--color-accent);
-  }
+  gap: 10%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.movie-list li span {
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-top: 10px;
+  text-align: center;
 }
 
 .controls {
+  padding-top: 5%;
   display: flex;
-  gap: 35px;
-
+  flex-direction: column;
+  gap: 15px;
   .delete {
     background-color: var(--color-primary);
   }
@@ -152,8 +163,8 @@ button:hover {
 
 .img {
   img {
-    aspect-ratio: 9 / 16;
-    width: 150px;
+    aspect-ratio: 10 / 16;
+    width: 155px;
     height: auto;
     border-radius: 10px;
   }

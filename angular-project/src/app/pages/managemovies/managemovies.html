@@ -70,23 +70,27 @@
   <ul class="movie-list">
     <h2>Already added movies:</h2>
     <app-searchbox (searchEvent)="handleSearch($event)"></app-searchbox>
-
-    <li *ngFor="let movie of movies">
-      <div class="img">
-        <img [src]="movie.image || 'https://placehold.co/170x220'" [alt]="'Movie Poster - ' + movie.title" />
-      </div>
-      <div class="info">
-        <p><span>Title: </span>{{movie.title}}</p>
-        <p><span>Release year: </span>{{movie.releaseYear}}</p>
-        <p><span>Director: </span>{{movie.director}}</p>
-        <p><span>Genres: </span>{{movie.genres.join(', ')}}</p>
-        <p><span>Rating: </span>{{movie.rating}}⭐</p>
-        <p><span>Duration: </span>{{movie.duration}} min</p>
-        <div class="controls">
-          <button class="edit">Edit</button>
-          <button class="delete">Delete</button>
+    <div class="list-items">
+      <li *ngFor="let movie of movies">
+        <div class="img">
+          <img
+            [src]="movie.image || 'https://placehold.co/170x220'"
+            [alt]="'Movie Poster - ' + movie.title"
+          />
         </div>
-      </div>
-    </li>
+        <div class="info">
+          <p><span>Title: </span>{{ movie.title }}</p>
+          <p><span>Release year: </span>{{ movie.releaseYear }}</p>
+          <p><span>Director: </span>{{ movie.director }}</p>
+          <p><span>Genres: </span>{{ movie.genres.join(", ") }}</p>
+          <p><span>Rating: </span>{{ movie.rating }}⭐</p>
+          <p><span>Duration: </span>{{ movie.duration }} min</p>
+          <div class="controls">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </div>
+        </div>
+      </li>
+    </div>
   </ul>
 </div>
