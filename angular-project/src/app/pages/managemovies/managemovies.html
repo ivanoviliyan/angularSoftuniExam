@@ -4,15 +4,61 @@
     <h1>Manage Movies</h1>
   </div>
 
-  <form>
+  <form #movieForm="ngForm" (ngSubmit)="onSubmit()">
     <h2>Add movie</h2>
     <div class="data">
-      <input type="text" placeholder="Title" required />
-      <input type="text" placeholder="Director" required />
-      <input type="number" placeholder="Release Year" required />
-      <input type="text" placeholder="Genres (comma separated)" />
-      <input type="number" placeholder="Rating (0-10)" min="0" max="10" />
-      <input type="number" placeholder="Duration (min)" min="1" />
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="formData.title"
+        placeholder="Title"
+        required
+      />
+      <input
+        type="text"
+        id="director"
+        name="director"
+        [(ngModel)]="formData.director"
+        placeholder="Director"
+        required
+      />
+      <input
+        type="number"
+        id="releaseYear"
+        name="releaseYear"
+        [(ngModel)]="formData.releaseYear"
+        placeholder="Release Year"
+        required
+      />
+      <div class="genres-checkboxes">
+        <label *ngFor="let genre of genresList">
+          <input
+            type="checkbox"
+            [value]="genre"
+            (change)="onGenreChange($event)"
+            [checked]="formData.genres.includes(genre)"
+          />
+          {{ genre }}
+        </label>
+      </div>
+      <input
+        type="string"
+        id="image"
+        name="image"
+        [(ngModel)]="formData.image"
+        placeholder="Image URL"
+        min="0"
+        max="10"
+      />
+      <input
+        type="number"
+        id="duration"
+        name="duration"
+        [(ngModel)]="formData.duration"
+        placeholder="Duration (min)"
+        min="1"
+      />
     </div>
 
     <div class="actions">
