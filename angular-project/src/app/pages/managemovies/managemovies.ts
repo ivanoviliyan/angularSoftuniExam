@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm  } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../auth.service';
+import { MovieService } from './managemovie.service';
+import { Searchbox } from '../../shared/searchbox/searchbox';
 
 interface FormData {
   title: string;
@@ -13,15 +13,54 @@ interface FormData {
   duration: string;
 }
 
+interface Movie {
+  title: string;
+  director: string;
+  releaseYear: string;
+  genres: string[];
+  image: string;
+  duration: string;
+  rating?: number;
+}
+
 @Component({
   selector: 'app-managemovies',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, Searchbox],
   templateUrl: './managemovies.html',
   styleUrl: './managemovies.css',
 })
 export class Managemovies {
   @ViewChild('movieForm') movieForm!: NgForm;
+
+  constructor(
+    private movieService: MovieService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  searchQuery = '';
+  selectedField = 'title';
+  movies: Movie[] = [];
+
+  handleSearch(event: { category: string; query: string }) {
+    this.movieService
+      .searchMovieByCriteria(event.category, event.query)
+      .subscribe(
+        (response) => {
+          const result: any = response.body || response;
+          if (result && Array.isArray(result)) {
+            this.movies = [...result];
+          } else {
+            this.movies = [];
+          }
+          this.cdr.detectChanges();
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
+  }
+
   genresList = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Thriller', 'Romance'];
 
   formData: FormData = {
@@ -46,8 +85,6 @@ export class Managemovies {
     }
   }
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
-
   valueCheck(value: any): boolean {
     return value ? true : false;
   }
@@ -58,27 +95,16 @@ export class Managemovies {
     );
 
     if (!validData) return;
-
-    const accessToken = this.auth.getUser('accessToken');
-
-    const headers = new HttpHeaders({
-      'X-Authorization': accessToken || '',
+    console.log(this.formData);
+    this.movieService.createMovie(this.formData).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.movieForm.resetForm();
+        }
+      },
+      error: (error) => {
+        console.log('Not OK', error);
+      },
     });
-
-    this.http
-      .post('http://localhost:3030/data/movies', this.formData, {
-        headers: headers,
-        observe: 'response',
-      })
-      .subscribe({
-        next: (response) => {
-          if (response.status === 200) {
-            this.movieForm.resetForm();
-          }
-        },
-        error: (error) => {
-          console.log('Not OK', error);
-        },
-      });
   }
 }

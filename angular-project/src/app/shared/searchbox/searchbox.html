@@ -1,0 +1,14 @@
+<div class="search-box">
+  <select [(ngModel)]="searchCategory" name="searchCategory">
+    <option value="title">Title</option>
+    <option value="director">Director</option>
+    <option value="releaseYear">Release Year</option>
+    <option value="genre">Genre</option>
+  </select>
+
+  <input
+    #inputElement
+    (keyup.enter)="onSearch(inputElement.value)"
+    placeholder="Press Enter to search..."
+  />
+</div>
