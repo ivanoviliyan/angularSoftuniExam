@@ -20,6 +20,7 @@ export class MovieService {
   }
 
   createMovie(data: any) {
+    console.log(data);
     return this.http.post(this.baseURL, data, {
       headers: this.credits(),
       observe: 'response',
@@ -39,6 +40,13 @@ export class MovieService {
 
   loadAllMovies() {
     return this.http.get(this.baseURL, {
+      headers: this.credits(),
+      observe: 'response',
+    });
+  }
+
+  onDelete(id: any) {
+    return this.http.delete(`${this.baseURL}/${id}`, {
       headers: this.credits(),
       observe: 'response',
     });

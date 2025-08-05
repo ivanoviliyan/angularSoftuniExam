@@ -121,7 +121,7 @@
           <p><span>Duration: </span>{{ movie.duration }} min</p>
           <div class="controls">
             <button class="edit" (click)="onEdit(movie._id)">Edit</button>
-            <button class="delete">Delete</button>
+            <button class="delete" (click)="onDelete(movie._id)">Delete</button>
           </div>
         </div>
       </li>

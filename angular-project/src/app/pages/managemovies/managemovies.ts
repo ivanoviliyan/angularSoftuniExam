@@ -102,12 +102,6 @@ export class Managemovies implements OnInit{
   }
 
   onSubmit() {
-    const validData = Object.values(this.formData).every(
-      (value) => this.valueCheck(value) === true
-    );
-
-    if (!validData) return;
-
     this.submitted = true;
 
     if (this.formData.genres.length === 0) {
@@ -118,6 +112,7 @@ export class Managemovies implements OnInit{
       next: (response) => {
         if (response.status === 200) {
           this.movieForm.resetForm();
+          this.onLoad();
         }
       },
       error: (error) => {
@@ -147,5 +142,17 @@ export class Managemovies implements OnInit{
 
   onEdit (id: string) {
     this.router.navigate(['edit-movie', id]);
+  }
+
+  onDelete(id: string) {
+    this.movieService.onDelete(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.onLoad();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 }
