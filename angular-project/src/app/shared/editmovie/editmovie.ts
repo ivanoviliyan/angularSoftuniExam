@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './editmovie.css',
 })
 export class Editmovie {
-  allGenres = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror'];
+  allGenres = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Thriller', 'Romance'];
 
   formData = {
     title: '',
@@ -21,6 +21,7 @@ export class Editmovie {
     releaseYear: '',
     genres: [] as string[],
     image: '',
+    duration: '',
   };
 
   constructor(
@@ -55,6 +56,7 @@ export class Editmovie {
             releaseYear: data?.releaseYear?.toString() || '',
             genres: data?.genres || [],
             image: data?.image || '',
+            duration: data?.duration || '',
           };
           this.cd.detectChanges();
         },
