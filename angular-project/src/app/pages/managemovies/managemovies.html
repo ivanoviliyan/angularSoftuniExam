@@ -14,7 +14,13 @@
         [(ngModel)]="formData.title"
         placeholder="Title"
         required
+        minlength="1"
+        #title="ngModel"
       />
+      <app-input-error-message
+        [field]="title"
+        fieldName="Title"
+      ></app-input-error-message>
       <input
         type="text"
         id="director"
@@ -22,7 +28,13 @@
         [(ngModel)]="formData.director"
         placeholder="Director"
         required
+        minlength="1"
+        #director="ngModel"
       />
+      <app-input-error-message
+        [field]="director"
+        fieldName="Director"
+      ></app-input-error-message>
       <input
         type="number"
         id="releaseYear"
@@ -30,9 +42,15 @@
         [(ngModel)]="formData.releaseYear"
         placeholder="Release Year"
         required
+        minlength="1"
+        #releaseYear="ngModel"
       />
+      <app-input-error-message
+        [field]="releaseYear"
+        fieldName="Release year"
+      ></app-input-error-message>
       <div class="genres-checkboxes">
-        <label *ngFor="let genre of genresList">
+        <label *ngFor="let genre of allGenres">
           <input
             type="checkbox"
             [value]="genre"
@@ -41,6 +59,10 @@
           />
           {{ genre }}
         </label>
+
+        <div *ngIf="submitted && formData.genres.length === 0" class="error">
+          Please select at least one genre.
+        </div>
       </div>
       <input
         type="string"
@@ -48,17 +70,28 @@
         name="image"
         [(ngModel)]="formData.image"
         placeholder="Image URL"
-        min="0"
-        max="10"
+        required
+        minlength="1"
+        #image="ngModel"
       />
+      <app-input-error-message
+        [field]="image"
+        fieldName="Image URL"
+      ></app-input-error-message>
       <input
         type="number"
         id="duration"
         name="duration"
         [(ngModel)]="formData.duration"
-        placeholder="Duration (min)"
-        min="1"
+        placeholder="Duration"
+        required
+        minlength="1"
+        #duration="ngModel"
       />
+      <app-input-error-message
+        [field]="duration"
+        fieldName="Duration"
+      ></app-input-error-message>
     </div>
 
     <div class="actions">
@@ -68,7 +101,7 @@
   </form>
 
   <ul class="movie-list">
-    <h2>Already added movies:</h2>
+    <h2>Search already added movies</h2>
     <app-searchbox (searchEvent)="handleSearch($event)"></app-searchbox>
     <div class="list-items">
       <li *ngFor="let movie of movies">

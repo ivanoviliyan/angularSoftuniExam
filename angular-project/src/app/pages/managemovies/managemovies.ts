@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MovieService } from './managemovie.service';
 import { Searchbox } from '../../shared/searchbox/searchbox';
+import { InputErrorMessage } from '../../shared/input-error-message/input-error-message';
 
 interface FormData {
   title: string;
@@ -26,7 +27,7 @@ interface Movie {
 @Component({
   selector: 'app-managemovies',
   standalone: true,
-  imports: [FormsModule, CommonModule, Searchbox],
+  imports: [FormsModule, CommonModule, Searchbox, InputErrorMessage],
   templateUrl: './managemovies.html',
   styleUrl: './managemovies.css',
 })
@@ -61,7 +62,8 @@ export class Managemovies {
       );
   }
 
-  genresList = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Thriller', 'Romance'];
+  allGenres = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Thriller', 'Romance'];
+  submitted = false;
 
   formData: FormData = {
     title: '',
@@ -71,6 +73,11 @@ export class Managemovies {
     image: '',
     duration: '',
   };
+
+
+  valueCheck(value: any): boolean {
+    return value ? true : false;
+  }
 
   onGenreChange(event: Event) {
     const checkbox = event.target as HTMLInputElement;
@@ -85,17 +92,19 @@ export class Managemovies {
     }
   }
 
-  valueCheck(value: any): boolean {
-    return value ? true : false;
-  }
-
   onSubmit() {
     const validData = Object.values(this.formData).every(
       (value) => this.valueCheck(value) === true
     );
 
     if (!validData) return;
-    console.log(this.formData);
+
+    this.submitted = true;
+
+    if (this.formData.genres.length === 0) {
+      return;
+    }
+
     this.movieService.createMovie(this.formData).subscribe({
       next: (response) => {
         if (response.status === 200) {

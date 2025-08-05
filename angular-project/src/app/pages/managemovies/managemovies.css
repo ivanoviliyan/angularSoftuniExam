@@ -169,3 +169,16 @@ button:hover {
     border-radius: 10px;
   }
 }
+
+.no-movies p {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
