@@ -103,6 +103,7 @@
   <ul class="movie-list">
     <h2>Search already added movies</h2>
     <app-searchbox (searchEvent)="handleSearch($event)"></app-searchbox>
+    
     <div class="list-items">
       <li *ngFor="let movie of movies">
         <div class="img">
@@ -119,7 +120,7 @@
           <p><span>Rating: </span>{{ movie.rating }}⭐</p>
           <p><span>Duration: </span>{{ movie.duration }} min</p>
           <div class="controls">
-            <button class="edit">Edit</button>
+            <button class="edit" (click)="onEdit(movie._id)">Edit</button>
             <button class="delete">Delete</button>
           </div>
         </div>
