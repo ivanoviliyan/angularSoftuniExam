@@ -24,7 +24,11 @@
 
 .movies {
   display: flex;
-  gap: 35px;
+  gap: 5em;
+  flex-wrap: wrap;
+  padding: 1em 1em;
+  align-items: center;
+  justify-content: center;
 }
 
 .description {
@@ -39,11 +43,12 @@ h1 {
 
 .movie-title {
   font-weight: bold;
+  text-align: center;
 }
 
 .movie-rate,
 .movie-desc {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: var(--color-light);
 }
 
@@ -63,8 +68,6 @@ h1 {
   transform: scale(1.015);
 }
 
-/* Повтарящи се стилове (можеш да ги изнесеш общо с TV Shows, ако искаш) */
-
 .image-wrapper {
   position: relative;
   overflow: hidden;
@@ -72,10 +75,10 @@ h1 {
 }
 
 .image-wrapper img {
-  width: 150px;
-  display: block;
-  transition: transform 0.3s ease-in-out;
-  border-radius: 0.5em;
+  width: 180px;
+  height: 250px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 
 .image-wrapper:hover img {
@@ -106,7 +109,6 @@ h1 {
 .image-wrapper:hover::after {
   opacity: 1;
 }
-
 
 .search-box {
   display: flex;
@@ -146,4 +148,24 @@ h1 {
 .search-box button:hover {
   transform: scale(1.015);
   transition: transform 0.2s ease-in-out;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    border: none;
+    border-radius: 10px;
+    padding: 1em;
+    font-size: 1.05em;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      filter: saturate(1.8);
+    }
+  }
 }

@@ -6,18 +6,16 @@
   <p class="description">
     From blockbusters to indie gems — explore the best movies to watch now.
   </p>
-  <div class="search-box">
-    <input type="text" placeholder="Search movies..." />
-    <button>🔍</button>
+  <div class="controls">
+    <app-searchbox (searchEvent)="handleSearch($event)"></app-searchbox>
+    <button (click)="onLoad()">Load all movies</button>
   </div>
   <section class="movies">
     <div class="movie-banner" *ngFor="let movie of movies">
-      <div class="image-wrapper">
+      <div class="image-wrapper" (click)="details(movie._id)">
         <img [src]="movie.image" alt="Movie Poster" />
       </div>
-      <p class="movie-title">{{movie.title}}</p>
-      <p class="movie-rate">{{movie.rating}}</p>
-      <button class="add-to-my-list">Watch later</button>
+      <p class="movie-title">{{ movie.title }} {{ movie.rating }}⭐</p>
     </div>
   </section>
 </section>

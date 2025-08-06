@@ -7,6 +7,7 @@ import { Mylist } from './pages/mylist/mylist';
 import { Register } from './pages/register/register';
 import { Singin } from './pages/singin/singin';
 import { Editmovie } from './shared/editmovie/editmovie';
+import { MovieDetails } from './shared/movie-details/movie-details';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'sign-in', component: Singin },
   { path: 'edit-movie/:id', component: Editmovie },
+  { path: 'movie-details/:id', component: MovieDetails },
 ];

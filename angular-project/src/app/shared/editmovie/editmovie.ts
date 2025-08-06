@@ -22,6 +22,7 @@ export class Editmovie {
     genres: [] as string[],
     image: '',
     duration: '',
+    desc: '',
   };
 
   constructor(
@@ -57,6 +58,7 @@ export class Editmovie {
             genres: data?.genres || [],
             image: data?.image || '',
             duration: data?.duration || '',
+            desc: data?.desc || '',
           };
           this.cd.detectChanges();
         },

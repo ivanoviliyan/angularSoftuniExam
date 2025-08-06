@@ -14,10 +14,11 @@ interface FormData {
   genres: string[];
   image: string;
   duration: string;
+  desc: string;
 }
 
 interface Movie {
-  _id: string,
+  _id: string;
   title: string;
   director: string;
   releaseYear: string;
@@ -25,6 +26,7 @@ interface Movie {
   image: string;
   duration: string;
   rating?: number;
+  desc: string;
 }
 
 @Component({
@@ -34,14 +36,13 @@ interface Movie {
   templateUrl: './managemovies.html',
   styleUrl: './managemovies.css',
 })
-
-export class Managemovies implements OnInit{
+export class Managemovies implements OnInit {
   @ViewChild('movieForm') movieForm!: NgForm;
 
   constructor(
     private movieService: MovieService,
     private cdr: ChangeDetectorRef,
-    private router: Router,
+    private router: Router
   ) {}
 
   searchQuery = '';
@@ -57,6 +58,10 @@ export class Managemovies implements OnInit{
       .searchMovieByCriteria(event.category, event.query)
       .subscribe(
         (response) => {
+          if (!event.category || !event.query) {
+            this.onLoad();
+          }
+
           const result: any = response.body || response;
           if (result && Array.isArray(result)) {
             this.movies = [...result];
@@ -82,6 +87,7 @@ export class Managemovies implements OnInit{
     genres: [],
     image: '',
     duration: '',
+    desc: '',
   };
 
   valueCheck(value: any): boolean {
@@ -140,19 +146,22 @@ export class Managemovies implements OnInit{
     });
   }
 
-  onEdit (id: string) {
+  onEdit(id: string) {
     this.router.navigate(['edit-movie', id]);
   }
 
   onDelete(id: string) {
     this.movieService.onDelete(id).subscribe({
       next: (response) => {
-        console.log(response);
         this.onLoad();
       },
       error: (error) => {
         console.log(error);
-      }
-    })
+      },
+    });
+  }
+
+  getImageUrl(movie: any): string {
+    return movie.image?.trim() ? movie.image : 'https://placehold.co/600x400';
   }
 }

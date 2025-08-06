@@ -1,0 +1,38 @@
+<div class="details-page">
+  <div class="details-container">
+    <div class="heading">
+      <h2>{{ formData.title }}</h2>
+      <img
+        class="banner"
+        [src]="formData.image || 'https://placehold.co/300x450?text=No+Image'"
+        alt="{{ formData.title }}"
+      />
+    </div>
+    
+    <div class="properties">
+      <h2>Details</h2>
+      <div class="row">
+        <span class="prop">🎬 Director:</span>
+        <span>{{ formData.director }}</span>
+      </div>
+      <div class="row">
+        <span class="prop">🆕 Release Year:</span>
+        <span>{{ formData.releaseYear }}</span>
+      </div>
+      <div class="row">
+        <span class="prop">⌛ Duration:</span>
+        <span>{{ formData.duration }} minutes</span>
+      </div>
+      <div class="row">
+        <span class="prop">📝 Description:</span>
+        <span>{{ formData.desc }}</span>
+      </div>
+
+
+      <div class="actions">
+        <button class="watch-now">Watch now</button>
+        <button class="watch-later">Watch later</button>
+      </div>
+    </div>
+  </div>
+</div>
