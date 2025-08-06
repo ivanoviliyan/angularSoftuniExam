@@ -19,13 +19,6 @@
   width: 65%;
 }
 
-.mylist-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-light);
-  padding-left: 0.75rem;
-}
-
 .mylist-section ul {
   display: flex;
   flex-direction: column;
@@ -52,52 +45,63 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  img {
-    width: 75px;
-  }
+.header img {
+  width: 75px;
 }
 
 .info {
   display: flex;
   align-items: center;
   gap: 25px;
-
-  img {
-    border-radius: 10px;
-  }
 }
 
-.mylist-section li:hover {
-  background: var(--color-hover);
-  cursor: pointer;
+.info img {
+  width: 200px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .action-btns {
   display: flex;
   gap: 2em;
+}
 
-  .btn-remove,
-  .btn-watched {
-    padding: 0.8em 0.7em;
-    border: none;
-    box-shadow: none;
-    border-radius: 10px;
-    width: 130px;
-    font-size: 0.90em;
-    &:hover {
-      transform: scale(1.015);
-      transition: transform 0.2s ease-in-out;
-      filter: saturate(1.5);
-      cursor: pointer;
-    }
-  }
+.action-btns .btn-remove,
+.action-btns .btn-watched {
+  padding: 0.8em 0.7em;
+  border: none;
+  box-shadow: none;
+  border-radius: 10px;
+  width: 130px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
 
-  .btn-remove {
-    background-color: var(--color-primary);
-  }
+.action-btns .btn-remove:hover,
+.action-btns .btn-watched:hover {
+  transform: scale(1.015);
+  filter: saturate(1.5);
+}
 
-  .btn-watched {
-    background-color: var(--color-accent);
-  }
+.action-btns .btn-remove {
+  background-color: var(--color-primary);
+}
+
+.action-btns .btn-watched {
+  background-color: var(--color-accent);
+}
+
+.action-btns .btn-watched:disabled {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  cursor: default;
+}
+
+.dimmed .content-to-dim {
+  opacity: 0.4;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }

@@ -14,6 +14,7 @@ export class MovieService {
     const accessToken = this.auth.getUser('accessToken');
     const headers = new HttpHeaders({
       'X-Authorization': accessToken || '',
+      'X-Admin': accessToken || '',
     });
 
     return headers;

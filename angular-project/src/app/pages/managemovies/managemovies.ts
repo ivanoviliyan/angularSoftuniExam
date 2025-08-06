@@ -15,6 +15,7 @@ interface FormData {
   image: string;
   duration: string;
   desc: string;
+  watched: [];
 }
 
 interface Movie {
@@ -27,6 +28,7 @@ interface Movie {
   duration: string;
   rating?: number;
   desc: string;
+  watched: [];
 }
 
 @Component({
@@ -88,6 +90,7 @@ export class Managemovies implements OnInit {
     image: '',
     duration: '',
     desc: '',
+    watched: [],
   };
 
   valueCheck(value: any): boolean {

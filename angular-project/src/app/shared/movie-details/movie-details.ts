@@ -4,6 +4,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -17,7 +18,8 @@ export class MovieDetails implements OnInit {
     private movieService: MovieService,
     private cd: ChangeDetectorRef,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class MovieDetails implements OnInit {
   }
 
   formData = {
+    id: '',
     title: '',
     director: '',
     releaseYear: '',
@@ -37,7 +40,6 @@ export class MovieDetails implements OnInit {
 
   loadMovie() {
     const movieId = this.route.snapshot.paramMap.get('id');
-    console.log('Loading movie with id:', movieId);
     const url = `${this.movieService.baseURL}/${movieId}`;
 
     this.http
@@ -48,8 +50,9 @@ export class MovieDetails implements OnInit {
       .subscribe({
         next: (response) => {
           const data: any = response.body;
-          console.log('Movie data loaded:', data);
+          // console.log('Movie data loaded:', data);
           this.formData = {
+            id: data?._id || '',
             title: data?.title || '',
             director: data?.director || '',
             releaseYear: data?.releaseYear?.toString() || '',
@@ -59,10 +62,65 @@ export class MovieDetails implements OnInit {
             desc: data?.desc || '',
           };
           this.cd.detectChanges();
+
+          this.checkIfMovieAlreadyAdded();
         },
         error: (error) => {
           console.log('Load error:', error);
         },
       });
+  }
+
+  private watchLaterUrl = `http://localhost:3030/data/watch-later`;
+  isAdded: boolean = false;
+
+  checkIfMovieAlreadyAdded() {
+    const query = `_ownerId="${this.auth.getUser('userId')}" AND _movieId="${
+      this.formData.id
+    }"`;
+    const url = `${this.watchLaterUrl}?where=${encodeURIComponent(query)}`;
+
+    this.http
+      .get(url, {
+        headers: this.movieService.credits(),
+        observe: 'response',
+      })
+      .subscribe({
+        next: (response: any) => {
+          const data = response.body;
+          this.isAdded = data.length > 0;
+          this.cd.detectChanges();
+        },
+        error: (error) => {
+          console.log('Error checking if movie already added:', error);
+        },
+      });
+  }
+
+  addToWatchLaterList(
+    id: string,
+    image: string,
+    title: string,
+    director: string
+  ) {
+    const data = { _movieId: id, image, title, director };
+
+    if (!this.isAdded) {
+      this.http
+        .post(this.watchLaterUrl, data, {
+          headers: this.movieService.credits(),
+          observe: 'response',
+        })
+        .subscribe({
+          next: (response: any) => {
+            console.log(this.isAdded);
+            this.isAdded = true;
+            this.cd.detectChanges();
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    }
   }
 }
