@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { URLs } from './urls';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private URLs: URLs
+  ) {}
 
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn());
   loggedIn$ = this.loggedIn.asObservable();
@@ -43,17 +48,27 @@ export class AuthService {
     });
 
     this.http
-      .get('http://localhost:3030/users/logout', {
+      .get(this.URLs.logoutURL, {
         headers,
         observe: 'response',
       })
       .subscribe({
         next: (response) => {
-          console.log(response.status)
+          console.log(response.status);
         },
         error: (error) => {
           console.error('Logout failed:', error);
         },
       });
+  }
+
+  public credits() {
+    const accessToken = this.getUser('accessToken');
+    const headers = new HttpHeaders({
+      'X-Authorization': accessToken || '',
+      'X-Admin': accessToken || '',
+    });
+
+    return headers;
   }
 }

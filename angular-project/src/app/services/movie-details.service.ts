@@ -1,0 +1,63 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { URLs } from './urls';
+import { Observable, map } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MovieDetailsService {
+  constructor(
+    private auth: AuthService,
+    private http: HttpClient,
+    private URLs: URLs
+  ) {}
+
+  loadMovie(movieId: string): Observable<any> {
+    const url = `${this.URLs.moviesURL}/${movieId}`;
+
+    return this.http
+      .get<any>(url, {
+        headers: this.auth.credits(),
+      })
+      .pipe(
+        map((data) => ({
+          id: data?._id || '',
+          title: data?.title || '',
+          director: data?.director || '',
+          releaseYear: data?.releaseYear?.toString() || '',
+          genres: data?.genres || [],
+          image: data?.image || '',
+          duration: data?.duration || '',
+          desc: data?.desc || '',
+        }))
+      );
+  }
+
+  checkIfMovieAlreadyAdded(movieId: string): Observable<boolean> {
+    const query = `_ownerId="${this.auth.getUser(
+      'userId'
+    )}" AND _movieId="${movieId}"`;
+    const url = `${this.URLs.watchLaterURL}?where=${encodeURIComponent(query)}`;
+
+    return this.http
+      .get<any[]>(url, {
+        headers: this.auth.credits(),
+      })
+      .pipe(map((data) => data.length > 0));
+  }
+
+  addToWatchLaterList(
+    id: string,
+    image: string,
+    title: string,
+    director: string
+  ): Observable<any> {
+    const data = { _movieId: id, image, title, director };
+    return this.http.post(this.URLs.watchLaterURL, data, {
+      headers: this.auth.credits(),
+    });
+  }
+}

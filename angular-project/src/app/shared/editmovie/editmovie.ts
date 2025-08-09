@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../../pages/managemovies/managemovie.service';
+import { MovieService } from '../../services/managemovie.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { URLs } from '../../services/urls';
 
 @Component({
   selector: 'app-editmovie',
@@ -31,6 +33,8 @@ export class Editmovie {
     private http: HttpClient,
     private cd: ChangeDetectorRef,
     private router: Router,
+    private auth: AuthService,
+    private URLs: URLs
   ) {}
 
   ngOnInit() {
@@ -40,11 +44,11 @@ export class Editmovie {
   loadMovie() {
     const movieId = this.route.snapshot.paramMap.get('id');
     console.log('Loading movie with id:', movieId);
-    const url = `${this.movieService.baseURL}/${movieId}`;
+    const url = `${this.URLs.moviesURL}/${movieId}`;
 
     this.http
       .get(url, {
-        headers: this.movieService.credits(),
+        headers: this.auth.credits(),
         observe: 'response',
       })
       .subscribe({
@@ -81,11 +85,11 @@ export class Editmovie {
 
   saveMovie() {
     const movieId = this.route.snapshot.paramMap.get('id');
-    const url = `${this.movieService.baseURL}/${movieId}`;
+    const url = `${this.URLs.moviesURL}/${movieId}`;
 
     this.http
       .put(url, this.formData, {
-        headers: this.movieService.credits(),
+        headers: this.auth.credits(),
         observe: 'response',
       })
       .subscribe({

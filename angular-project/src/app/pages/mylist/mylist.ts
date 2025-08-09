@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MovieService } from '../managemovies/managemovie.service';
+import { MovieService } from '../../services/managemovie.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { forkJoin } from 'rxjs';
 
 interface Movie {
@@ -102,7 +102,7 @@ export class Mylist implements OnInit {
             movieUrl,
             { watched: updatedWatched },
             {
-              headers: this.movieService.credits(),
+              headers: this.auth.credits(),
               observe: 'response',
             }
           )
@@ -148,7 +148,7 @@ export class Mylist implements OnInit {
                       updateUrl,
                       { watched: updatedWatched },
                       {
-                        headers: this.movieService.credits(),
+                        headers: this.auth.credits(),
                       }
                     )
                     .subscribe({
@@ -168,7 +168,7 @@ export class Mylist implements OnInit {
 
           this.http
             .delete(deleteUrl, {
-              headers: this.movieService.credits(),
+              headers: this.auth.credits(),
               observe: 'response',
             })
             .subscribe({

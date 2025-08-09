@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,11 +11,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './navigation.html',
   styleUrl: './navigation.css',
 })
-
-export class Navigation implements OnInit, OnDestroy { 
+export class Navigation implements OnInit, OnDestroy {
   isLoggedIn = false;
   private subscription!: Subscription;
-  
+
   constructor(public authService: AuthService, private router: Router) {}
 
   getUserName() {

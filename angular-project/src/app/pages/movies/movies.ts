@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { MovieService } from '../managemovies/managemovie.service';
+import { MovieService } from '../../services/managemovie.service';
 import { CommonModule } from '@angular/common';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { Router } from '@angular/router';
@@ -72,6 +72,6 @@ export class Movies implements OnInit {
 
   details(id: string) {
     console.log(id);
-    this.router.navigate([`movie-details/${id}`])
+    this.router.navigate([`movie-details/${id}`]);
   }
 }

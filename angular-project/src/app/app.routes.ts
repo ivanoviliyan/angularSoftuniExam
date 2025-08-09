@@ -7,7 +7,7 @@ import { Mylist } from './pages/mylist/mylist';
 import { Register } from './pages/register/register';
 import { Singin } from './pages/singin/singin';
 import { Editmovie } from './shared/editmovie/editmovie';
-import { MovieDetails } from './shared/movie-details/movie-details';
+import { MovieDetails } from './pages/movie-details/movie-details';
 
 export const routes: Routes = [
   { path: '', component: Home },

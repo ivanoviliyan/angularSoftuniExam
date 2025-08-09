@@ -30,8 +30,12 @@
 
       <div class="actions">
         <button class="watch-now">Watch now</button>
-        <button class="watch-later" (click)="addToWatchLaterList(formData.id, formData.image, formData.title, formData.director)">
-          Watch later
+        <button
+          class="watch-later"
+          [disabled]="isAdded"
+          (click)="addToWatchLaterList()"
+        >
+          {{ isAdded ? "Added to Watch Later" : "Watch Later" }}
         </button>
       </div>
     </div>

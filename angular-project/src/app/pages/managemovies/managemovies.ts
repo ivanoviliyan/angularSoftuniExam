@@ -1,7 +1,7 @@
 import { Component, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MovieService } from './managemovie.service';
+import { MovieService } from '../../services/managemovie.service';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { InputErrorMessage } from '../../shared/input-error-message/input-error-message';
 import { Router } from '@angular/router';
