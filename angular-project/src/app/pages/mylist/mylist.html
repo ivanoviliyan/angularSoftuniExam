@@ -24,7 +24,7 @@
             {{ movie.isWatched ? "Watched" : "Mark as watched" }}
           </button>
 
-          <button class="btn-remove">Remove from list</button>
+          <button class="btn-remove"             (click)="removeFromList(movie)">Remove from list</button>
         </div>
       </li>
     </ul>
