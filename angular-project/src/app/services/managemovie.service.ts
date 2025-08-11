@@ -6,6 +6,7 @@ import { URLs } from './urls';
 @Injectable({
   providedIn: 'root',
 })
+
 export class MovieService {
   constructor(
     private http: HttpClient,
@@ -22,10 +23,9 @@ export class MovieService {
   }
 
   searchMovieByCriteria(category: string, query: string) {
-    let url = '';
-    category.toLowerCase() === 'genre'
-      ? (url = `${this.URLs.moviesURL}?where=genres%3D%22${query}%22`)
-      : (url = `${this.URLs.moviesURL}?where=${category}%3D%22${query}%22`);
+    const whereQuery = encodeURIComponent(`${category} LIKE "${query}"`);
+    const url = `${this.URLs.moviesURL}?where=${whereQuery}`;
+
     return this.http.get(url, {
       headers: this.auth.credits(),
       observe: 'response',

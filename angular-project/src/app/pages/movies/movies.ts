@@ -71,7 +71,6 @@ export class Movies implements OnInit {
   }
 
   details(id: string) {
-    console.log(id);
     this.router.navigate([`movie-details/${id}`]);
   }
 }

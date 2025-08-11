@@ -5,31 +5,8 @@ import { MovieService } from '../../services/managemovie.service';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { InputErrorMessage } from '../../shared/input-error-message/input-error-message';
 import { Router } from '@angular/router';
+import { Movie, FormData } from '../types/types';
 
-interface FormData {
-  id: string;
-  title: string;
-  director: string;
-  releaseYear: string;
-  genres: string[];
-  image: string;
-  duration: string;
-  desc: string;
-  watched: [];
-}
-
-interface Movie {
-  _id: string;
-  title: string;
-  director: string;
-  releaseYear: string;
-  genres: string[];
-  image: string;
-  duration: string;
-  rating?: number;
-  desc: string;
-  watched: [];
-}
 
 @Component({
   selector: 'app-managemovies',
