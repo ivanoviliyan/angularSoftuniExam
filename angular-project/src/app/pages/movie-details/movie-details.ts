@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MovieDetailsService } from '../../services/movie-details.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormData } from '../types/types';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./movie-details.css'],
 })
 export class MovieDetails implements OnInit {
-  formData = {
+  formData: FormData = {
     id: '',
     title: '',
     director: '',
@@ -17,6 +18,7 @@ export class MovieDetails implements OnInit {
     image: '',
     duration: '',
     desc: '',
+    watched: [],
   };
 
   isAdded = false;
