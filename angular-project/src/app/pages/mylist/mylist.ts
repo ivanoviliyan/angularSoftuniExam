@@ -157,13 +157,13 @@ export class Mylist implements OnInit {
                           `Removed ${ownerId} from watched in movie ${m._id}`
                         ),
                       error: (err) =>
-                        console.error(`Error updating movie ${m._id}:`, err),
+                        console.log(`Error updating movie ${m._id}:`, err),
                     });
                 }
               });
             },
             error: (err) =>
-              console.error('Error fetching movies for patch:', err),
+              console.log('Error fetching movies for patch:', err),
           });
 
           this.http
@@ -175,15 +175,14 @@ export class Mylist implements OnInit {
               next: () => {
                 this.movies = this.movies.filter((m) => m._id !== movie._id);
                 this.chr.detectChanges();
-                console.log(`Movie ${movie._id} removed successfully.`);
               },
-              error: (error) => console.error('Delete error:', error),
+              error: (error) => console.log('Delete error:', error),
             });
         } else {
           console.log('No movie found to remove.');
         }
       },
-      error: (error) => console.error('Get error:', error),
+      error: (error) => console.log('Get error:', error),
     });
   }
 }
