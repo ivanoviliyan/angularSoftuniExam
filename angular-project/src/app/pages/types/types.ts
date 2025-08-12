@@ -8,7 +8,10 @@ export interface Movie {
   duration: string;
   rating?: number;
   desc: string;
-  watched: [];
+  watched: string[];
+  isWatched: boolean;
+  _ownerId: string;
+  _movieId: string;
 }
 
 export interface FormData {

@@ -19,7 +19,7 @@ export class HomeServices {
   ) {}
 
   getLatestMovies() {
-    const url = `${this.URLs.moviesURL}?offset=3&sortBy=_createdOn%20desc`;
+    const url = `${this.URLs.moviesURL}?sortBy=_createdOn%20desc&pageSize=3`;
 
     return this.http.get(url, {
       headers: this.auth.credits(),

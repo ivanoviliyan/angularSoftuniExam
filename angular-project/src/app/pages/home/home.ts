@@ -23,8 +23,8 @@ export class Home implements OnInit {
 
   loadLatestMovies() {
     this.hs.getLatestMovies().subscribe((response: any) => {
-      console.log(response.body);
       this.movies = response.body || [];
+      console.log(this.movies);
       this.cdr.detectChanges();
     });
   }
