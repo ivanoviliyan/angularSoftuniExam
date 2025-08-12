@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieService } from '../../services/managemovie.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { URLs } from '../../services/urls';
+import { Movie } from '../../pages/types/types';
 
 @Component({
   selector: 'app-editmovie',
@@ -29,7 +29,6 @@ export class Editmovie {
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService,
     private http: HttpClient,
     private cd: ChangeDetectorRef,
     private router: Router,
@@ -43,7 +42,6 @@ export class Editmovie {
 
   loadMovie() {
     const movieId = this.route.snapshot.paramMap.get('id');
-    console.log('Loading movie with id:', movieId);
     const url = `${this.URLs.moviesURL}/${movieId}`;
 
     this.http
@@ -53,18 +51,21 @@ export class Editmovie {
       })
       .subscribe({
         next: (response) => {
-          const data: any = response.body;
-          console.log('Movie data loaded:', data);
-          this.formData = {
-            title: data?.title || '',
-            director: data?.director || '',
-            releaseYear: data?.releaseYear?.toString() || '',
-            genres: data?.genres || [],
-            image: data?.image || '',
-            duration: data?.duration || '',
-            desc: data?.desc || '',
-          };
-          this.cd.detectChanges();
+          const data = response.body as Movie | null;
+          if (data) {
+            this.formData = {
+              title: data.title || '',
+              director: data.director || '',
+              releaseYear: data.releaseYear?.toString() || '',
+              genres: data.genres || [],
+              image: data.image || '',
+              duration: data.duration || '',
+              desc: data.desc || '',
+            };
+            this.cd.detectChanges();
+          } else {
+            console.log('No movie data found.');
+          }
         },
         error: (error) => {
           console.log('Load error:', error);
@@ -95,10 +96,9 @@ export class Editmovie {
       .subscribe({
         next: (response) => {
           this.router.navigate(['manage-movies']);
-          console.log('Update successful:', response);
         },
         error: (error) => {
-          console.error('Update failed:', error);
+          console.log('Update failed:', error);
         },
       });
   }

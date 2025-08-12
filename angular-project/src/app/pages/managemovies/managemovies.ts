@@ -7,7 +7,6 @@ import { InputErrorMessage } from '../../shared/input-error-message/input-error-
 import { Router } from '@angular/router';
 import { Movie, FormData } from '../types/types';
 
-
 @Component({
   selector: 'app-managemovies',
   standalone: true,
@@ -32,27 +31,19 @@ export class Managemovies implements OnInit {
     this.onLoad();
   }
 
-  handleSearch(event: { category: string; query: string }) {
+  handleSearch(event: { category: string; query: string }): void {
     this.movieService
       .searchMovieByCriteria(event.category, event.query)
-      .subscribe(
-        (response) => {
-          if (!event.category || !event.query) {
-            this.onLoad();
-          }
-
-          const result: any = response.body || response;
-          if (result && Array.isArray(result)) {
-            this.movies = [...result];
-          } else {
-            this.movies = [];
-          }
+      .subscribe({
+        next: (response) => {
+          const result: Movie[] = (response.body as Movie[]) || [];
+          this.movies = Array.isArray(result) ? [...result] : [];
           this.cdr.detectChanges();
         },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
+        error: (error) => {
+          console.log('Error:', error);
+        },
+      });
   }
 
   allGenres = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Thriller', 'Romance'];
@@ -70,11 +61,7 @@ export class Managemovies implements OnInit {
     watched: [],
   };
 
-  valueCheck(value: any): boolean {
-    return value ? true : false;
-  }
-
-  onGenreChange(event: Event) {
+  onGenreChange(event: Event): void {
     const checkbox = event.target as HTMLInputElement;
     const value = checkbox.value;
 
@@ -87,7 +74,7 @@ export class Managemovies implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.formData.genres.length === 0) {
@@ -107,12 +94,12 @@ export class Managemovies implements OnInit {
     });
   }
 
-  onLoad() {
+  onLoad(): void {
     this.movieService.loadAllMovies().subscribe({
       next: (response) => {
         if (response.status === 200) {
-          const result: any = response.body || response;
-          if (result && Array.isArray(result)) {
+          const result = (response.body as Movie[]) || [];
+          if (Array.isArray(result)) {
             this.movies = [...result];
           } else {
             this.movies = [];
@@ -126,13 +113,13 @@ export class Managemovies implements OnInit {
     });
   }
 
-  onEdit(id: string) {
+  onEdit(id: string): void {
     this.router.navigate(['edit-movie', id]);
   }
 
-  onDelete(id: string) {
+  onDelete(id: string): void {
     this.movieService.onDelete(id).subscribe({
-      next: (response) => {
+      next: () => {
         this.onLoad();
       },
       error: (error) => {
@@ -141,7 +128,7 @@ export class Managemovies implements OnInit {
     });
   }
 
-  getImageUrl(movie: any): string {
+  getImageUrl(movie: Movie): string {
     return movie.image?.trim() ? movie.image : 'https://placehold.co/600x400';
   }
 }

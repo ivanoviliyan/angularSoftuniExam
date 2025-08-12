@@ -18,31 +18,33 @@ export class HomeServices {
     private router: Router
   ) {}
 
-  getLatestMovies() {
+  getLatestMovies(): Observable<Movie[]> {
     const url = `${this.URLs.moviesURL}?sortBy=_createdOn%20desc&pageSize=3`;
 
     return this.http.get(url, {
       headers: this.auth.credits(),
       observe: 'response',
-    });
+    }).pipe(
+      map((response) => (response.body as Movie[]) || [])
+    );
   }
 
-  onClick(movieId: string) {
+  onClick(movieId: string): void {
     const id = movieId;
     this.router.navigate([`movie-details/${id}`]);
   }
 
-  getRandomMovie(): Observable<Movie | undefined> {
+  getRandomMovie(): Observable<Movie> {
     return this.http
       .get(this.URLs.moviesURL, {
         headers: this.auth.credits(),
         observe: 'response',
       })
       .pipe(
-        map((response: any) => {
-          const movies: Movie[] = (response.body as Movie[]) ?? [];
+        map((response) => {
+          const movies: Movie[] = (response.body as Movie[]) || [];
           if (movies.length === 0) {
-            return undefined;
+            throw new Error('No movies found');
           }
           return movies[Math.floor(Math.random() * movies.length)];
         })

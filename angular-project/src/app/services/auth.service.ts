@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { URLs } from './urls';
+import { User } from '../pages/types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.isLoggedIn());
   loggedIn$ = this.loggedIn.asObservable();
 
-  saveUser(user: any) {
+  saveUser(user: User) {
     localStorage.setItem('username', user.username);
     localStorage.setItem('accessToken', user.accessToken);
     localStorage.setItem('userId', user._id);
@@ -53,11 +54,10 @@ export class AuthService {
         observe: 'response',
       })
       .subscribe({
-        next: (response) => {
-          console.log(response.status);
+        next: () => {
         },
         error: (error) => {
-          console.error('Logout failed:', error);
+          console.log('Logout failed:', error);
         },
       });
   }

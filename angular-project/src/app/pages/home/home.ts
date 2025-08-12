@@ -21,19 +21,18 @@ export class Home implements OnInit {
     this.loadStreaming();
   }
 
-  loadLatestMovies() {
-    this.hs.getLatestMovies().subscribe((response: any) => {
-      this.movies = response.body || [];
-      console.log(this.movies);
+  loadLatestMovies(): void {
+    this.hs.getLatestMovies().subscribe((response) => {
+      this.movies = (response as Movie[]) || [];
       this.cdr.detectChanges();
     });
   }
 
-  details(movieId: string) {
+  details(movieId: string): void {
     this.hs.onClick(movieId);
   }
 
-  loadStreaming() {
+  loadStreaming(): void {
     this.hs.getRandomMovie().subscribe((movie) => {
       if (movie) {
         this.streamedMovie = movie;

@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { URLs } from '../../services/urls';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './register.css',
 })
 export class Register {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private URLs: URLs
+  ) {}
 
   username = '';
   email = '';
@@ -21,7 +26,6 @@ export class Register {
 
   onSubmit() {
     if (this.password !== this.confirmPassword) {
-      console.log('Passwords are not the same!');
       return;
     }
 
@@ -30,11 +34,9 @@ export class Register {
       email: this.email,
       password: this.password,
     };
-    console.log(userData);
 
-    this.http.post('http://localhost:3030/users/register', userData).subscribe({
-      next: (response) => {
-        console.log('OK', response);
+    this.http.post(this.URLs.registerURL, userData).subscribe({
+      next: () => {
         this.router.navigate(['/sign-in']);
       },
       error: (error) => {

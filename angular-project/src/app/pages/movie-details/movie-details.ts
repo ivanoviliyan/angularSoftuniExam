@@ -32,7 +32,6 @@ export class MovieDetails implements OnInit {
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('id');
     if (!movieId) {
-      console.error('No movie id in route params!');
       return;
     }
 
@@ -45,7 +44,7 @@ export class MovieDetails implements OnInit {
     });
   }
 
-  addToWatchLaterList() {
+  addToWatchLaterList(): void {
     if (!this.isAdded) {
       this.mds
         .addToWatchLaterList(
@@ -59,7 +58,7 @@ export class MovieDetails implements OnInit {
             this.isAdded = true;
             this.cd.detectChanges();
           },
-          error: (err) => console.error(err),
+          error: (err) => console.log(err),
         });
     }
   }

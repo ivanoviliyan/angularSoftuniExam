@@ -1,4 +1,5 @@
 export interface Movie {
+  body: Movie[];
   _id: string;
   title: string;
   director: string;
@@ -24,4 +25,17 @@ export interface FormData {
   duration: string;
   desc: string;
   watched: [];
+}
+
+export interface User {
+  username: string;
+  accessToken: string;
+  _id: string;
+}
+
+export interface WatchListEntry {
+  id: string;
+  image: string;
+  title: string;
+  director: string;
 }

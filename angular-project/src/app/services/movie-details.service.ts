@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { URLs } from './urls';
 import { Observable, map } from 'rxjs';
+import { Movie, WatchListEntry } from '../pages/types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class MovieDetailsService {
     const url = `${this.URLs.moviesURL}/${movieId}`;
 
     return this.http
-      .get<any>(url, {
+      .get<Movie>(url, {
         headers: this.auth.credits(),
       })
       .pipe(
@@ -43,7 +44,7 @@ export class MovieDetailsService {
     const url = `${this.URLs.watchLaterURL}?where=${encodeURIComponent(query)}`;
 
     return this.http
-      .get<any[]>(url, {
+      .get<Movie[]>(url, {
         headers: this.auth.credits(),
       })
       .pipe(map((data) => data.length > 0));
@@ -54,9 +55,9 @@ export class MovieDetailsService {
     image: string,
     title: string,
     director: string
-  ): Observable<any> {
+  ): Observable<WatchListEntry> {
     const data = { _movieId: id, image, title, director };
-    return this.http.post(this.URLs.watchLaterURL, data, {
+    return this.http.post<WatchListEntry>(this.URLs.watchLaterURL, data, {
       headers: this.auth.credits(),
     });
   }

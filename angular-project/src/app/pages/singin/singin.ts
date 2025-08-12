@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { URLs } from '../../services/urls';
+import { User } from '../types/types';
 
 @Component({
   selector: 'app-singin',
@@ -16,7 +18,8 @@ export class Singin {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private URLs: URLs
   ) {}
 
   email = '';
@@ -28,15 +31,14 @@ export class Singin {
       password: this.password,
     };
 
-    this.http.post('http://localhost:3030/users/login', userData).subscribe({
-      next: (response: any) => {
-        console.log('OK', response);
+    this.http.post<User>(this.URLs.loginURL, userData).subscribe({
+      next: (response: User) => {
         this.auth.saveUser(response);
         this.router.navigate(['/']);
       },
       error: (error) => {
-        console.log('Not OK', error);
-      },
-    });
+        console.log(error);
+      }
+    })
   }
 }

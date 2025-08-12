@@ -23,7 +23,6 @@ export class Navigation implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.authService.loggedIn$.subscribe((status) => {
-      console.log('Logged in status changed:', status);
       this.isLoggedIn = status;
     });
   }

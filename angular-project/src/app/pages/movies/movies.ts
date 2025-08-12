@@ -3,6 +3,7 @@ import { MovieService } from '../../services/managemovie.service';
 import { CommonModule } from '@angular/common';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { Router } from '@angular/router';
+import { Movie } from '../types/types';
 
 @Component({
   selector: 'app-movies',
@@ -18,20 +19,19 @@ export class Movies implements OnInit {
     private router: Router
   ) {}
 
-  public movies: any[] = [];
+  public movies: Movie[] = [];
 
   ngOnInit(): void {
     this.onLoad();
   }
 
-  onLoad() {
+  onLoad(): void {
     this.moviesService.loadAllMovies().subscribe({
       next: (response) => {
         if (response.status === 200) {
-          const result: any = response.body || response;
+          const result: Movie[] = (response.body as Movie[]) || [];
           if (result && Array.isArray(result)) {
             this.movies = [...result];
-            console.log(this.movies);
             this.cdr.detectChanges();
           } else {
             this.movies = [];
@@ -45,29 +45,19 @@ export class Movies implements OnInit {
     });
   }
 
-  handleSearch(event: { category: string; query: string }) {
+  handleSearch(event: { category: string; query: string }): void {
     this.moviesService
       .searchMovieByCriteria(event.category, event.query)
-      .subscribe(
-        (response: any) => {
-          if (!event.category || !event.query) {
-            this.onLoad();
-            this.cdr.detectChanges();
-          }
-
-          const result: any = response.body || response;
-          if (result && Array.isArray(result)) {
-            this.cdr.detectChanges();
-            this.movies = [...result];
-          } else {
-            this.movies = [];
-          }
+      .subscribe({
+        next: (response) => {
+          const result: Movie[] = (response.body as Movie[]) || [];
+          this.movies = Array.isArray(result) ? [...result] : [];
           this.cdr.detectChanges();
         },
-        (error: any) => {
+        error: (error) => {
           console.error('Error:', error);
-        }
-      );
+        },
+      });
   }
 
   details(id: string) {

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { URLs } from './urls';
+import { Movie, FormData } from '../pages/types/types';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,7 @@ export class MovieService {
     private URLs: URLs
   ) {}
 
-  createMovie(data: any) {
-    console.log(data);
+  createMovie(data: FormData) {
     return this.http.post(this.URLs.moviesURL, data, {
       headers: this.auth.credits(),
       observe: 'response',
@@ -39,7 +39,7 @@ export class MovieService {
     });
   }
 
-  onDelete(id: any) {
+  onDelete(id: string) {
     return this.http.delete(`${this.URLs.moviesURL}/${id}`, {
       headers: this.auth.credits(),
       observe: 'response',

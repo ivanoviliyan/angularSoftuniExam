@@ -24,7 +24,6 @@ export class Mylist implements OnInit {
   ngOnInit(): void {
     const ownerId = this.auth.getUser('userId');
     if (!ownerId) {
-      console.error('User not logged in');
       return;
     }
     this.currentUserId = ownerId;
@@ -34,8 +33,8 @@ export class Mylist implements OnInit {
         this.movies = movies;
         this.chr.detectChanges();
       },
-      error: (err: any): void => {
-        console.error('Error loading watch-later movies:', err);
+      error: (err): void => {
+        console.log('Error loading watch-later movies:', err);
       },
     });
   }
@@ -47,8 +46,8 @@ export class Mylist implements OnInit {
         movie.watched = [...(movie.watched || []), this.currentUserId];
         this.chr.detectChanges();
       },
-      error: (error: any) => {
-        console.error('Error updating watched list:', error);
+      error: (error) => {
+        console.log('Error updating watched list:', error);
       },
     });
   }
@@ -59,7 +58,7 @@ export class Mylist implements OnInit {
         this.movies = this.movies.filter((m: Movie) => m._id !== movie._id);
         this.chr.detectChanges();
       },
-      error: (err: any): void => console.error('Error removing movie:', err),
+      error: (err): void => console.log('Error removing movie:', err),
     });
   }
 }
