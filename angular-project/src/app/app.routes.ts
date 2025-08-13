@@ -8,15 +8,17 @@ import { Register } from './pages/register/register';
 import { Singin } from './pages/singin/singin';
 import { Editmovie } from './shared/editmovie/editmovie';
 import { MovieDetails } from './pages/movie-details/movie-details';
+import { guard } from './guards/guard';
+import { guest } from './guards/guest';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'about', component: About },
-  { path: 'manage-movies', component: Managemovies },
-  { path: 'movies', component: Movies },
-  { path: 'my-list', component: Mylist },
-  { path: 'register', component: Register },
-  { path: 'sign-in', component: Singin },
-  { path: 'edit-movie/:id', component: Editmovie },
   { path: 'movie-details/:id', component: MovieDetails },
+  { path: 'movies', component: Movies },
+  { path: 'register', canActivate: [guest], component: Register },
+  { path: 'sign-in', canActivate: [guest], component: Singin },
+  { path: 'my-list', canActivate: [guard], component: Mylist },
+  { path: 'edit-movie/:id', canActivate: [guard], component: Editmovie },
+  { path: 'manage-movies', canActivate: [guard], component: Managemovies },
 ];

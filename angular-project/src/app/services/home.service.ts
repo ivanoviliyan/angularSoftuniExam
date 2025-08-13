@@ -1,5 +1,4 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from './auth.service';
 import { URLs } from './urls';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,7 +12,6 @@ import { Observable } from 'rxjs';
 export class HomeServices {
   constructor(
     private http: HttpClient,
-    private auth: AuthService,
     private URLs: URLs,
     private router: Router
   ) {}
@@ -22,7 +20,6 @@ export class HomeServices {
     const url = `${this.URLs.moviesURL}?sortBy=_createdOn%20desc&pageSize=3`;
 
     return this.http.get(url, {
-      headers: this.auth.credits(),
       observe: 'response',
     }).pipe(
       map((response) => (response.body as Movie[]) || [])
@@ -37,7 +34,6 @@ export class HomeServices {
   getRandomMovie(): Observable<Movie> {
     return this.http
       .get(this.URLs.moviesURL, {
-        headers: this.auth.credits(),
         observe: 'response',
       })
       .pipe(

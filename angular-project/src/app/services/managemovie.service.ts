@@ -34,7 +34,6 @@ export class MovieService {
 
   loadAllMovies() {
     return this.http.get(this.URLs.moviesURL, {
-      headers: this.auth.credits(),
       observe: 'response',
     });
   }
