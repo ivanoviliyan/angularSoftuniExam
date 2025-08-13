@@ -1,4 +1,4 @@
-# 🎬 Cinehub_Angular_Project
+# 🎬 angularSoftuniExam
 SoftUni – Angular Project 2025
 
 ## 📥 Installation
@@ -11,7 +11,7 @@ Download the project files or clone the repository to your local machine.
 Open a new terminal window and navigate to the server folder:
 
 ```bash
-cd cinehub-server
+cd angular-project
 ```
 
 Install dependencies:
@@ -22,7 +22,7 @@ npm install
 
 Start the server:
 ```bash
-npm start
+ng serve
 ```
 
 ### 3️⃣ Set up the Client
