@@ -38,3 +38,18 @@
   margin-bottom: 1.2rem;
   color: var(--color-light);
 }
+
+.author {
+  background-color: var(--color-gray);
+  padding: 1em;
+  border-radius: 20px;
+  strong {
+    color: var(--color-accent);
+  }
+}
+.link {
+  color: var(--color-accent);
+  &:hover {
+    color: var(--color-primary);
+  }
+}

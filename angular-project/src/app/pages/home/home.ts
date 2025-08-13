@@ -14,7 +14,7 @@ export class Home implements OnInit {
   constructor(private hs: HomeServices, private cdr: ChangeDetectorRef) {}
 
   movies: Movie[] = [];
-  streamedMovie!: Movie;
+  streamedMovie?: Movie;
 
   ngOnInit(): void {
     this.loadLatestMovies();
