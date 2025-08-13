@@ -14,7 +14,7 @@ export class MovieDetails implements OnInit {
     title: '',
     director: '',
     releaseYear: '',
-    genres: [] as string[],
+    genres: [],
     image: '',
     duration: '',
     desc: '',
@@ -32,15 +32,16 @@ export class MovieDetails implements OnInit {
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('id');
     if (!movieId) {
-      console.log('here')
+      console.log('Movie ID not found');
       return;
     }
 
     this.mds.loadMovie(movieId).subscribe((movie) => {
       this.formData = movie;
+
       this.mds.checkIfMovieAlreadyAdded(movie.id).subscribe((added) => {
         this.isAdded = added;
-        this.cd.detectChanges();
+        this.cd.markForCheck();
       });
     });
   }
@@ -57,9 +58,9 @@ export class MovieDetails implements OnInit {
         .subscribe({
           next: () => {
             this.isAdded = true;
-            this.cd.detectChanges();
+            this.cd.markForCheck();
           },
-          error: (err) => console.log(err),
+          error: (err) => console.error('Error adding movie:', err),
         });
     }
   }

@@ -54,45 +54,34 @@ export class MylistService {
     );
   }
 
-  removeFromList(movie: Movie): Observable<any> {
-    const getUrl = `${this.watchLaterUrl}?where=_movieId%3D%22${movie._id}%22`;
+  removeFromList(movie: Movie, currentUserId: string): Observable<Movie> {
+    const getUrl = `${this.watchLaterUrl}?where=_movieId%3D%22${movie._id}%22%20AND%20_ownerId%3D%22${currentUserId}%22`;
 
     return this.http.get<Movie[]>(getUrl).pipe(
       switchMap((response) => {
         if (response.length === 0) {
-          throw new Error('No movie found to remove.');
+          throw new Error('Movie not found in your watch list.');
         }
-        const id = response[0]._id;
-        const ownerId = response[0]._ownerId;
-        const deleteUrl = `${this.watchLaterUrl}/${id}`;
-        const patchUrl = `${this.moviesUrl}?where=_ownerId%3D%22${ownerId}%22`;
 
-        return this.http.get<any[]>(patchUrl).pipe(
-          switchMap((movies) => {
-            const patchRequests = movies
-              .filter(
-                (m) => Array.isArray(m.watched) && m.watched.includes(ownerId)
-              )
-              .map((m) => {
-                const updatedWatched: string[] = m.watched.filter(
-                  (uid: string) => uid !== ownerId
-                );
-                return this.http.patch(
-                  `${this.moviesUrl}/${m._id}`,
-                  { watched: updatedWatched },
-                  { headers: this.auth.credits() }
-                );
-              });
+        const deleteUrl = `${this.watchLaterUrl}/${response[0]._id}`;
+        const movieUrl = `${this.moviesUrl}/${movie._id}`;
 
-            return forkJoin(patchRequests).pipe(
-              switchMap(() =>
-                this.http.delete(deleteUrl, {
-                  headers: this.auth.credits(),
-                  observe: 'response',
-                })
-              )
-            );
-          })
+        const updatedWatched = (movie.watched || []).filter(
+          (uid) => uid !== currentUserId
+        );
+        
+        return forkJoin([
+          this.http.delete(deleteUrl, { headers: this.auth.credits() }),
+          this.http.patch<Movie>(
+            movieUrl,
+            { watched: updatedWatched },
+            { headers: this.auth.credits() }
+          ),
+        ]).pipe(
+          map(() => ({
+            ...movie,
+            watched: updatedWatched,
+          }))
         );
       })
     );

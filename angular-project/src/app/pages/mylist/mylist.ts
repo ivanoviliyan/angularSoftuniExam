@@ -53,10 +53,10 @@ export class Mylist implements OnInit {
   }
 
   removeFromList(movie: Movie): void {
-    this.mylistService.removeFromList(movie).subscribe({
+    this.mylistService.removeFromList(movie, this.currentUserId).subscribe({
       next: (): void => {
         this.movies = this.movies.filter((m: Movie) => m._id !== movie._id);
-        this.chr.detectChanges();
+        this.chr.markForCheck();
       },
       error: (err): void => console.log('Error removing movie:', err),
     });
