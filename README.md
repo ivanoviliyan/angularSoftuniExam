@@ -66,14 +66,14 @@ Non-authenticated users can only view the existing movies and their details, but
 ```plaintext
 src/
  ├── app/
- │   ├── shared/      # Reusable UI elements (header, footer, moviе-details)
- │   ├── guards/          # AuthGuard за защита на пътища
- │   ├── services/        # Angular услуги за потребители, филми и коментари
- │   ├── pages/           # Основни страници (Home, Movies, My List)
- │   ├── types/           # Интерфейси и типове (Movie, User, WatchListEntry)
+ │   ├── shared/
+ │   ├── guards/          
+ │   ├── services/     
+ │   ├── pages/           
+ │   ├── types/          
  │   ├── app-routing.module.ts
  │   └── app.module.ts
- ├── assets/              # Статични ресурси (изображения, икони, стилове)
+ ├── assets/   
 ```
 
 ---
