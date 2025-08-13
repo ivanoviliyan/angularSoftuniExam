@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { Movie } from '../types/types';
+import { Movie } from '../../types/types';
 import { MylistService } from '../../services/mylist.service';
 
 @Component({

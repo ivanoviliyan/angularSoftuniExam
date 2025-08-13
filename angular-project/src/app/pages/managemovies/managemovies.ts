@@ -5,7 +5,7 @@ import { MovieService } from '../../services/managemovie.service';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { InputErrorMessage } from '../../shared/input-error-message/input-error-message';
 import { Router } from '@angular/router';
-import { Movie, FormData } from '../types/types';
+import { Movie, FormData } from '../../types/types';
 
 @Component({
   selector: 'app-managemovies',

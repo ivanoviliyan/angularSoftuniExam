@@ -3,7 +3,7 @@ import { MovieService } from '../../services/managemovie.service';
 import { CommonModule } from '@angular/common';
 import { Searchbox } from '../../shared/searchbox/searchbox';
 import { Router } from '@angular/router';
-import { Movie } from '../types/types';
+import { Movie } from '../../types/types';
 
 @Component({
   selector: 'app-movies',

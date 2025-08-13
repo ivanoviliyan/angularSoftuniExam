@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { URLs } from './urls';
 import { Observable, map } from 'rxjs';
-import { Movie, WatchListEntry } from '../pages/types/types';
+import { Movie, WatchListEntry } from '../types/types';
 
 @Injectable({
   providedIn: 'root',

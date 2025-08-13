@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { Movie } from '../pages/types/types';
+import { Movie } from '../types/types';
 
 @Injectable({
   providedIn: 'root',

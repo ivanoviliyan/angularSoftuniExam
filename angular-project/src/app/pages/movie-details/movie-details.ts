@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MovieDetailsService } from '../../services/movie-details.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormData } from '../types/types';
+import { FormData } from '../../types/types';
 
 @Component({
   selector: 'app-movie-details',

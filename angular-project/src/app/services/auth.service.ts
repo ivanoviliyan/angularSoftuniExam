@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { URLs } from './urls';
-import { User } from '../pages/types/types';
+import { User } from '../types/types';
 
 @Injectable({
   providedIn: 'root',

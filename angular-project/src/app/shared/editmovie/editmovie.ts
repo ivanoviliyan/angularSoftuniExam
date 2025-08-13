@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { URLs } from '../../services/urls';
-import { Movie } from '../../pages/types/types';
+import { Movie } from '../../types/types';
 
 @Component({
   selector: 'app-editmovie',

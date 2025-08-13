@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { URLs } from './urls';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Movie } from '../pages/types/types';
+import { Movie } from '../types/types';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

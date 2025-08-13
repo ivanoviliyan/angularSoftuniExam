@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeServices } from '../../services/home.service';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
-import { Movie } from '../types/types';
+import { Movie } from '../../types/types';
 
 @Component({
   selector: 'app-home',

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { URLs } from '../../services/urls';
-import { User } from '../types/types';
+import { User } from '../../types/types';
 
 @Component({
   selector: 'app-singin',
