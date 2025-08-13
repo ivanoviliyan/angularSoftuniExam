@@ -1,4 +1,12 @@
-<section class="home section">
+<section
+  class="home section"
+  [ngStyle]="{
+    'background-image':
+      'linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(' +
+      (streamedMovie?.image || 'assets/cinehub-logo.png') +
+      ')'
+  }"
+>
   <div class="main">
     <h1>Watch the Latest Movies Now</h1>
     <p class="new-releases">
@@ -10,8 +18,15 @@
       <li *ngFor="let genre of streamedMovie.genres">{{ genre }}</li>
     </ul>
     <p class="stars-views">Rating 8.7/10⭐</p>
-    <button class="action-btn" (click)="details(streamedMovie._id)">Watch Now</button>
+    <button
+      class="action-btn"
+      (click)="details(streamedMovie._id)"
+      *ngIf="streamedMovie"
+    >
+      Watch Now
+    </button>
   </div>
+
   <div class="aside">
     <h2>Latest Movies</h2>
     <ul class="coming-soon-list">
@@ -19,7 +34,7 @@
         <img [src]="movie.image" alt="Movie Poster" />
         <div class="desc">
           <strong>{{ movie.title }}</strong>
-          <p>{{ movie.genres.join(", ") }}</p>
+          <p>{{ movie.genres.join(', ') }}</p>
         </div>
       </li>
     </ul>

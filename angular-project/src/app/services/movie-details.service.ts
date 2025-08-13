@@ -50,15 +50,22 @@ export class MovieDetailsService {
       .pipe(map((data) => data.length > 0));
   }
 
-  addToWatchLaterList(
-    id: string,
-    image: string,
-    title: string,
-    director: string
-  ): Observable<WatchListEntry> {
-    const data = { _movieId: id, image, title, director };
-    return this.http.post<WatchListEntry>(this.URLs.watchLaterURL, data, {
-      headers: this.auth.credits(),
-    });
-  }
+addToWatchLaterList(
+  id: string,
+  image: string,
+  title: string,
+  director: string
+): Observable<WatchListEntry> {
+  const data = { 
+    _movieId: id, 
+    image, 
+    title, 
+    director,
+    _ownerId: this.auth.getUser('userId')
+  };
+  
+  return this.http.post<WatchListEntry>(this.URLs.watchLaterURL, data, {
+    headers: this.auth.credits(),
+  });
+}
 }

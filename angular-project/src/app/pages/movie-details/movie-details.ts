@@ -32,6 +32,7 @@ export class MovieDetails implements OnInit {
   ngOnInit(): void {
     const movieId = this.route.snapshot.paramMap.get('id');
     if (!movieId) {
+      console.log('here')
       return;
     }
 

@@ -34,8 +34,11 @@ export interface User {
 }
 
 export interface WatchListEntry {
-  id: string;
+  id?: string;
   image: string;
   title: string;
   director: string;
+  _ownerId: string | null;
+  _movieId: string | null;
+  _id?: string;
 }
