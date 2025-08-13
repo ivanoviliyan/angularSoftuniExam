@@ -14,10 +14,10 @@ import { guest } from './guards/guest';
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'about', component: About },
-  { path: 'movie-details/:id', component: MovieDetails },
   { path: 'movies', component: Movies },
   { path: 'register', canActivate: [guest], component: Register },
   { path: 'sign-in', canActivate: [guest], component: Singin },
+  { path: 'movie-details/:id', canActivate: [guard], component: MovieDetails },
   { path: 'my-list', canActivate: [guard], component: Mylist },
   { path: 'edit-movie/:id', canActivate: [guard], component: Editmovie },
   { path: 'manage-movies', canActivate: [guard], component: Managemovies },
